@@ -29,24 +29,24 @@ Bu proje, **2025 yılı dünya ülkeleri verilerini** kullanarak **İnsani Geli�
 
 ```
 📁 BM Ülke Ölçümleri 2025/
-├── 🐍 enhanced_model.py              # Ana model eğitim kodu
-├── 🐍 model_usage_example.py         # Model kullanım örneği
-├── 🐍 Veri_seti_analizi.py          # Veri seti keşif analizi
-├── 🐍 Veri_seti_istatistikleri.py   # Temel istatistikler
-├── 🤖 enhanced_hdi_model_*.pkl       # Eğitilmiş model dosyası
-├── 📊 enhanced_correlation_heatmap.png
-├── 📊 enhanced_histograms.png
-├── 📊 enhanced_top_hdi_countries.png
-├── 📊 enhanced_feature_importance.png
-├── 📊 enhanced_actual_vs_predicted.png
-└── 📊 enhanced_model_dashboard.png
+├── 🐍 model.py                      # Ana model eğitim kodu
+├── 🐍 model_usage_example.py        # Model kullanım örneği
+├── 🐍 Veri_seti_analizi.py         # Veri seti keşif analizi
+├── 🐍 Veri_seti_istatistikleri.py  # Temel istatistikler
+├── 🤖 hdi_model.pkl                 # Eğitilmiş model dosyası
+├── 📊 correlation_heatmap.png
+├── 📊 histograms.png
+├── 📊 top_hdi_countries.png
+├── 📊 feature_importance.png
+├── 📊 actual_vs_predicted.png
+└── 📊 model_dashboard.png
 ```
 
 ## 🚀 Kullanım
 
 ### 1. Model Eğitimi
 ```bash
-python enhanced_model.py
+python model.py
 ```
 
 ### 2. Model Kullanımı
@@ -55,7 +55,7 @@ import joblib
 import numpy as np
 
 # Model yükleme
-model_data = joblib.load('enhanced_hdi_model_*.pkl')
+model_data = joblib.load('hdi_model.pkl')
 model = model_data['model']
 features = model_data['features']
 

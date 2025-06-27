@@ -12,7 +12,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
 
-print("=== GELİŞTİRİLMİŞ FİNAL MODEL ===")
+print("=== HDI TAHMİN MODELİ ===")
 print("Kapsamlı Görselleştirmelerle HDI Tahmin Modeli\n")
 
 # Veri yükleme
@@ -95,9 +95,9 @@ sns.heatmap(correlation_matrix, annot=True, cmap='RdYlBu_r', center=0,
             square=True, linewidths=0.5, fmt='.2f')
 plt.title('Özellikler Arası Korelasyon Haritası', fontsize=16, pad=20)
 plt.tight_layout()
-plt.savefig('enhanced_correlation_heatmap.png', dpi=300, bbox_inches='tight')
+plt.savefig('correlation_heatmap.png', dpi=300, bbox_inches='tight')
 plt.close()
-print("✅ Korelasyon haritası: enhanced_correlation_heatmap.png")
+print("✅ Korelasyon haritası: correlation_heatmap.png")
 
 # 2. Histogramlar
 fig, axes = plt.subplots(nrows=4, ncols=3, figsize=(15, 16))
@@ -116,9 +116,9 @@ for i in range(len(numeric_df.columns), len(axes)):
 
 plt.suptitle('Tüm Sayısal Özelliklerin Dağılımları', fontsize=16)
 plt.tight_layout()
-plt.savefig('enhanced_histograms.png', dpi=300, bbox_inches='tight')
+plt.savefig('histograms.png', dpi=300, bbox_inches='tight')
 plt.close()
-print("✅ Histogramlar: enhanced_histograms.png")
+print("✅ Histogramlar: histograms.png")
 
 # 3. En Yüksek HDI'lı 20 Ülke
 top_hdi = data_clean.nlargest(20, 'Human Development Index (HDI)')
@@ -130,9 +130,9 @@ plt.xlabel('HDI Değeri', fontsize=12)
 plt.ylabel('Ülke', fontsize=12)
 plt.grid(axis='x', alpha=0.3)
 plt.tight_layout()
-plt.savefig('enhanced_top_hdi_countries.png', dpi=300, bbox_inches='tight')
+plt.savefig('top_hdi_countries.png', dpi=300, bbox_inches='tight')
 plt.close()
-print("✅ Top HDI ülkeleri: enhanced_top_hdi_countries.png")
+print("✅ Top HDI ülkeleri: top_hdi_countries.png")
 
 # MODEL EĞİTİMİ
 X = data_clean[available_features]
@@ -181,9 +181,9 @@ plt.xlabel('Önem Derecesi', fontsize=12)
 plt.ylabel('Özellikler', fontsize=12)
 plt.grid(axis='x', alpha=0.3)
 plt.tight_layout()
-plt.savefig('enhanced_feature_importance.png', dpi=300, bbox_inches='tight')
+plt.savefig('feature_importance.png', dpi=300, bbox_inches='tight')
 plt.close()
-print("✅ Özellik önemleri: enhanced_feature_importance.png")
+print("✅ Özellik önemleri: feature_importance.png")
 
 # 5. Actual vs Predicted
 plt.figure(figsize=(10, 8))
@@ -200,9 +200,9 @@ plt.title(f'Gerçek vs Tahmin Edilen HDI Değerleri\nModel Performansı: {test_r
 plt.legend()
 plt.grid(True, alpha=0.3)
 plt.tight_layout()
-plt.savefig('enhanced_actual_vs_predicted.png', dpi=300, bbox_inches='tight')
+plt.savefig('actual_vs_predicted.png', dpi=300, bbox_inches='tight')
 plt.close()
-print("✅ Gerçek vs Tahmin: enhanced_actual_vs_predicted.png")
+print("✅ Gerçek vs Tahmin: actual_vs_predicted.png")
 
 # 6. Kapsamlı Dashboard
 fig, axes = plt.subplots(2, 2, figsize=(15, 12))
@@ -251,12 +251,12 @@ axes[1,1].set_title('Model Özet İstatistikleri')
 
 plt.suptitle('HDI Tahmin Modeli - Kapsamlı Dashboard', fontsize=16)
 plt.tight_layout()
-plt.savefig('enhanced_model_dashboard.png', dpi=300, bbox_inches='tight')
+plt.savefig('model_dashboard.png', dpi=300, bbox_inches='tight')
 plt.close()
-print("✅ Model dashboard: enhanced_model_dashboard.png")
+print("✅ Model dashboard: model_dashboard.png")
 
 # Model kaydetme
-model_filename = f"enhanced_hdi_model_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pkl"
+model_filename = f"hdi_model_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pkl"
 model_package = {
     'model': final_model,
     'features': available_features,
@@ -273,13 +273,13 @@ joblib.dump(model_package, model_filename)
 print(f"\n💾 Model kaydedildi: {model_filename}")
 
 print("\n" + "="*60)
-print("🎉 GELİŞTİRİLMİŞ MODEL HAZIR!")
+print("🎉 HDI TAHMİN MODELİ HAZIR!")
 print("="*60)
-print(f"📁 Yeni görselleştirmeler:")
-print(f"  1. enhanced_correlation_heatmap.png")
-print(f"  2. enhanced_histograms.png")
-print(f"  3. enhanced_top_hdi_countries.png")
-print(f"  4. enhanced_feature_importance.png")
-print(f"  5. enhanced_actual_vs_predicted.png")
-print(f"  6. enhanced_model_dashboard.png")
+print(f"📁 Oluşturulan görselleştirmeler:")
+print(f"  1. correlation_heatmap.png")
+print(f"  2. histograms.png")
+print(f"  3. top_hdi_countries.png")
+print(f"  4. feature_importance.png")
+print(f"  5. actual_vs_predicted.png")
+print(f"  6. model_dashboard.png")
 print(f"📊 Model performansı: {test_r2*100:.1f}% doğruluk") 
